@@ -1,5 +1,11 @@
 package handler
 
-func Hello() string {
-	return "Hello, world!\n"
+import (
+	"io"
+	"net/http"
+)
+
+// handle
+func (h Handler) Hello(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, h.usecase.Hello())
 }
