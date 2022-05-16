@@ -1,8 +1,12 @@
 package usecase
 
-type Usecase struct{}
+type usecase struct{}
+
+type Usecase interface {
+	Hello() string
+}
 
 // get hello usecase
-func NewUseCase() Usecase {
-	return Usecase{}
+func NewUseCase() usecase {
+	return usecase{}
 }

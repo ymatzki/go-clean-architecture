@@ -4,13 +4,13 @@ import (
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
 
-type Handler struct {
+type handler struct {
 	usecase usecase.Usecase
 }
 
 // get hello handler
-func NewHandler(u usecase.Usecase) Handler {
-	return Handler{
+func NewHandler(u usecase.Usecase) handler {
+	return handler{
 		u,
 	}
 }

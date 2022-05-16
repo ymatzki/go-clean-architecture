@@ -1,6 +1,6 @@
 package usecase
 
 // echo hello string
-func (u Usecase) Hello() string {
+func (u usecase) Hello() string {
 	return "Hello, world!\n"
 }
