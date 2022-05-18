@@ -6,7 +6,7 @@ import (
 
 type repository struct{}
 
-func NewLocalRepository() domainRepository.Repository {
+func NewRepository() domainRepository.Repository {
 	return repository{}
 }
 

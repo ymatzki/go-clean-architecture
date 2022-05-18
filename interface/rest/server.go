@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/ymatzki/go-clean-architecture/infra/local"
 	"github.com/ymatzki/go-clean-architecture/interface/rest/handler"
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
@@ -11,11 +12,12 @@ import (
 func Execute() {
 	// dependency injection
 	// TODO: use DIContainer
-	helloUsecase := usecase.NewUseCase()
-	helloHandler := handler.NewHandler(helloUsecase)
+	r := local.NewRepository()
+	u := usecase.NewUseCase(r)
+	h := handler.NewHandler(u)
 
 	// execute
-	http.HandleFunc("/", helloHandler.Hello)
+	http.HandleFunc("/", h.Hello)
 	log.Printf("Start http server...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
