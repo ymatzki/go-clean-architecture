@@ -6,3 +6,6 @@ start:
 
 setup:
 	go install github.com/golang/mock/mockgen@v1.5.0
+
+test:
+	go test ./...

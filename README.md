@@ -22,6 +22,12 @@ $ make setup
 $ make mockgen
 ```
 
+### run test
+
+```
+$ make test
+```
+
 ### run server
 
 ```
