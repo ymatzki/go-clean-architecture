@@ -6,6 +6,6 @@ import (
 )
 
 // handle
-func (h handler) Hello(w http.ResponseWriter, req *http.Request) {
+func (h Handler) Hello(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, h.usecase.Hello())
 }

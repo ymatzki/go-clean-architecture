@@ -3,15 +3,15 @@ package usecase
 
 import "github.com/ymatzki/go-clean-architecture/domain/repository"
 
-type usecase struct {
-	repo repository.Repository
-}
-
 type Usecase interface {
 	Hello() string
 }
 
+type usecase struct {
+	repo repository.Repository
+}
+
 // get hello usecase
-func NewUseCase(repo repository.Repository) usecase {
+func NewUsecase(repo repository.Repository) Usecase {
 	return usecase{repo: repo}
 }

@@ -30,7 +30,7 @@ func TestHello(t *testing.T) {
 			r := repository.NewMockRepository(ctrl)
 			tt.prepare(r)
 
-			u := usecase.NewUseCase(r)
+			u := usecase.NewUsecase(r)
 			got := u.Hello()
 			if got != tt.want {
 				t.Errorf("got %s: want %s", got, tt.want)
