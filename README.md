@@ -5,7 +5,8 @@ go-clean-architecture
 ├── domain      Enterprise business rule
 ├── infra       Frameworks and drivers
 ├── interface   Interface adapters
-└── usecase     Application business rule
+├── usecase     Application business rule
+└── schema      API schemas
 ```
 
 ## develop
