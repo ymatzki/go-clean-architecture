@@ -10,7 +10,7 @@ import (
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
 
-func Initialize() handler.Handler {
+func Initialize() handler.ServerInterface {
 	wire.Build(handler.NewHandler, usecase.NewUsecase, local.NewRepository)
-	return handler.Handler{}
+	return handler.HelloHandler{}
 }

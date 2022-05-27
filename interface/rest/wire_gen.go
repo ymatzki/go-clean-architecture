@@ -14,9 +14,9 @@ import (
 
 // Injectors from wire.go:
 
-func Initialize() handler.Handler {
+func Initialize() handler.ServerInterface {
 	repository := local.NewRepository()
 	usecaseUsecase := usecase.NewUsecase(repository)
-	handlerHandler := handler.NewHandler(usecaseUsecase)
-	return handlerHandler
+	serverInterface := handler.NewHandler(usecaseUsecase)
+	return serverInterface
 }

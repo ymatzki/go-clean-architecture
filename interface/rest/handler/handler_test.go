@@ -44,7 +44,7 @@ func TestHello(t *testing.T) {
 			h := NewHandler(u)
 
 			// call
-			h.Hello(tt.fields.writer, tt.fields.request)
+			h.Get(tt.fields.writer, tt.fields.request)
 			res := tt.fields.writer.Result()
 			defer res.Body.Close()
 

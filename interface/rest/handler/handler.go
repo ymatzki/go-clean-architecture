@@ -1,22 +1,24 @@
+//go:generate oapi-codegen -config config.yaml ../../../schema/openapi/api.yaml
+
 package handler
 
 import (
+	"io"
 	"net/http"
 
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
 
-type handler interface {
-	Hello(w http.ResponseWriter, req *http.Request)
-}
-
-type Handler struct {
+type HelloHandler struct {
 	usecase usecase.Usecase
 }
 
-// get hello handler
-func NewHandler(u usecase.Usecase) Handler {
-	return Handler{
+func NewHandler(u usecase.Usecase) ServerInterface {
+	return HelloHandler{
 		u,
 	}
+}
+
+func (h HelloHandler) Get(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, h.usecase.Hello())
 }

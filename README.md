@@ -17,10 +17,10 @@ go-clean-architecture
 $ make setup
 ```
 
-### generate mock
+### generate code and mock
 
 ```
-$ make mockgen
+$ make gen
 ```
 
 ### run test

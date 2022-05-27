@@ -10,7 +10,7 @@ func Execute() {
 	h := Initialize()
 
 	// execute
-	http.HandleFunc("/", h.Hello)
+	http.HandleFunc("/", h.Get)
 	log.Printf("Start http server...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
