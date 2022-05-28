@@ -13,8 +13,24 @@ go-clean-architecture
 
 ### setup
 
+Install tools.
+
 ```
 $ make setup
+```
+
+Initialize DB.
+
+```
+$ make init-db
+```
+
+## clean up
+
+Clean up DB.
+
+```
+$ make clean-db
 ```
 
 ### generate code and mock

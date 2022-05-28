@@ -1,9 +1,7 @@
+# Develop
 gen:
 	go generate ./...
 	wire ./...
-
-start:
-	go run main.go
 
 setup:
 	go install github.com/golang/mock/mockgen@v1.5.0
@@ -12,3 +10,14 @@ setup:
 
 test:
 	go test ./...
+
+# Database
+init-db:
+	docker-compose up -d
+
+clean-db:
+	docker-compose down
+
+# Run Application
+start: init-db
+	go run main.go
