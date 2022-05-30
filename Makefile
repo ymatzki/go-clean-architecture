@@ -12,11 +12,16 @@ test:
 	go test ./...
 
 # Database
-init-db:
+up-db:
 	docker-compose up -d
 
-clean-db:
+down-db:
 	docker-compose down
+
+clean-db:
+	docker volume rm go-clean-architecture_data
+
+init-db: down-db clean-db up-db
 
 # Run Application
 start: init-db
