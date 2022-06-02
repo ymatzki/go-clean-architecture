@@ -7,15 +7,16 @@
 package rest
 
 import (
-	"github.com/ymatzki/go-clean-architecture/infra/local"
+	"database/sql"
+	"github.com/ymatzki/go-clean-architecture/infra/postgresql"
 	"github.com/ymatzki/go-clean-architecture/interface/rest/handler"
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
 
 // Injectors from wire.go:
 
-func Initialize() handler.ServerInterface {
-	repository := local.NewRepository()
+func Initialize(db *sql.DB) handler.ServerInterface {
+	repository := postgresql.NewRepository(db)
 	usecaseUsecase := usecase.NewUsecase(repository)
 	serverInterface := handler.NewHandler(usecaseUsecase)
 	return serverInterface

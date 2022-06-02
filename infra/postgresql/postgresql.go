@@ -1,16 +1,22 @@
 package postgresql
 
-import domainRepository "github.com/ymatzki/go-clean-architecture/domain/repository"
+import (
+	"database/sql"
 
-type repository struct{}
+	domainRepository "github.com/ymatzki/go-clean-architecture/domain/repository"
+)
 
-func NewRepository() domainRepository.Repository {
+type repository struct {
+	db *sql.DB
+}
+
+func NewRepository(db *sql.DB) domainRepository.Repository {
 	return repository{
-		// TODO: implement
+		db,
 	}
 }
 
 func (r repository) Greet() string {
 	// TODO: implement
-	return ""
+	return "fix me and select data from database"
 }
