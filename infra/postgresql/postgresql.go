@@ -16,7 +16,25 @@ func NewRepository(db *sql.DB) domainRepository.Repository {
 	}
 }
 
+type greeting struct {
+	word string
+}
+
+// FIXME: handle error
 func (r repository) Greet() string {
-	// TODO: implement
-	return "fix me and select data from database"
+	rows, err := r.db.Query("select word from greeting")
+	if err != nil {
+		return err.Error()
+	}
+	defer rows.Close()
+
+	var word string
+	for rows.Next() {
+		rows.Scan(&word)
+	}
+	if err = rows.Err(); err != nil {
+		return err.Error()
+	}
+
+	return word
 }
