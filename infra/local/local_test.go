@@ -15,9 +15,13 @@ func TestGreet(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			// arrenge
 			r := local.NewRepository()
 
+			// act
 			got := r.Greet()
+
+			// assert
 			if got != tt.want {
 				t.Errorf("got %s: want %s", got, tt.want)
 			}

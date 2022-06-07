@@ -25,13 +25,17 @@ func TestHello(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			// arrenge
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
 			r := repository.NewMockRepository(ctrl)
 			tt.prepare(r)
-
 			u := usecase.NewUsecase(r)
+
+			// act
 			got := u.Hello()
+
+			// assert
 			if got != tt.want {
 				t.Errorf("got %s: want %s", got, tt.want)
 			}

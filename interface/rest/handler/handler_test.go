@@ -36,19 +36,19 @@ func TestHello(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// prepare
+			// arrenge
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
 			u := usecase.NewMockUsecase(ctrl)
 			tt.fields.usecase(u)
 			h := NewHandler(u)
 
-			// call
+			// act
 			h.Get(tt.fields.writer, tt.fields.request)
 			res := tt.fields.writer.Result()
 			defer res.Body.Close()
 
-			// check
+			// assert
 			got, _ := ioutil.ReadAll(res.Body)
 			if string(got) != tt.want {
 				t.Errorf("got %s: want %s", got, tt.want)
