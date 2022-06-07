@@ -22,7 +22,7 @@ type greeting struct {
 
 // FIXME: handle error
 func (r repository) Greet() string {
-	rows, err := r.db.Query("select word from greeting")
+	rows, err := r.db.Query("SELECT word FROM greeting")
 	if err != nil {
 		return err.Error()
 	}
