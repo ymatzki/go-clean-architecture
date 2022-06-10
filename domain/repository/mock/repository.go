@@ -34,11 +34,12 @@ func (m *MockRepository) EXPECT() *MockRepositoryMockRecorder {
 }
 
 // Greet mocks base method.
-func (m *MockRepository) Greet() string {
+func (m *MockRepository) Greet() (string, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Greet")
 	ret0, _ := ret[0].(string)
-	return ret0
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // Greet indicates an expected call of Greet.

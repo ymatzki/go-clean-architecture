@@ -17,7 +17,7 @@ func TestHello(t *testing.T) {
 		{
 			"hello",
 			func(r *repository.MockRepository) {
-				r.EXPECT().Greet().Return("hello")
+				r.EXPECT().Greet().Return("hello", nil)
 			},
 			"hello",
 		},

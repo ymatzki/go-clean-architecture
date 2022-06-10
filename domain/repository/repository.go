@@ -2,5 +2,5 @@
 package repository
 
 type Repository interface {
-	Greet() string
+	Greet() (string, error)
 }

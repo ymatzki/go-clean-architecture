@@ -3,6 +3,7 @@ package postgresql
 import (
 	"database/sql"
 
+	"github.com/pkg/errors"
 	domainRepository "github.com/ymatzki/go-clean-architecture/domain/repository"
 )
 
@@ -20,11 +21,10 @@ type greeting struct {
 	word string
 }
 
-// FIXME: handle error
-func (r repository) Greet() string {
+func (r repository) Greet() (string, error) {
 	rows, err := r.db.Query("SELECT word FROM greeting")
 	if err != nil {
-		return err.Error()
+		return "", errors.Wrap(err, "")
 	}
 	defer rows.Close()
 
@@ -33,8 +33,8 @@ func (r repository) Greet() string {
 		rows.Scan(&word)
 	}
 	if err = rows.Err(); err != nil {
-		return err.Error()
+		return "", errors.Wrap(err, "")
 	}
 
-	return word
+	return word, nil
 }

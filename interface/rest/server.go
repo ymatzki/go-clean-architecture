@@ -12,7 +12,7 @@ import (
 func Execute() {
 	db, err := sql.Open("postgres", `host=localhost port=5432 user=admin password=pass dbname=test sslmode=disable`)
 	if err != nil {
-		log.Fatalf("unable to use data source name", err)
+		log.Fatalf("unable to use data source name")
 	}
 	defer db.Close()
 

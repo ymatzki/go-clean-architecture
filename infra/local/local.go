@@ -10,6 +10,6 @@ func NewRepository() domainRepository.Repository {
 	return repository{}
 }
 
-func (r repository) Greet() string {
-	return "Hello, world!\n"
+func (r repository) Greet() (string, error) {
+	return "Hello, world!\n", nil
 }

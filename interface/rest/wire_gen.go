@@ -13,6 +13,10 @@ import (
 	"github.com/ymatzki/go-clean-architecture/usecase"
 )
 
+import (
+	_ "github.com/lib/pq"
+)
+
 // Injectors from wire.go:
 
 func Initialize(db *sql.DB) handler.ServerInterface {

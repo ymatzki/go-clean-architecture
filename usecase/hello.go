@@ -2,5 +2,9 @@ package usecase
 
 // echo hello string
 func (u usecase) Hello() string {
-	return u.repo.Greet()
+	greeting, err := u.repo.Greet()
+	if err != nil {
+		return "" // FIXME: handle error
+	}
+	return greeting
 }

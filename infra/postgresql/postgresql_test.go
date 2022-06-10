@@ -35,7 +35,7 @@ func TestGreet(t *testing.T) {
 			r := NewRepository(db)
 
 			// act
-			got := r.Greet()
+			got, _ := r.Greet() // FIXME: handle error
 
 			// assert
 			if got != tt.want {
