@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/pkg/errors"
 )
 
 func TestGreet(t *testing.T) {
@@ -11,14 +12,24 @@ func TestGreet(t *testing.T) {
 		name    string
 		prepare func(mock sqlmock.Sqlmock)
 		want    string
+		err     string
 	}{
 		{
-			"hello",
+			"pass",
 			func(mock sqlmock.Sqlmock) {
 				rows := sqlmock.NewRows([]string{"word"}).AddRow("hello")
 				mock.ExpectQuery("SELECT word FROM greeting").WillReturnRows(rows)
 			},
 			"hello",
+			"",
+		},
+		{
+			"failed - get some error",
+			func(mock sqlmock.Sqlmock) {
+				mock.ExpectQuery("SELECT word FROM greeting").WillReturnError(errors.New("some error"))
+			},
+			"",
+			": some error",
 		},
 	}
 
@@ -35,11 +46,19 @@ func TestGreet(t *testing.T) {
 			r := NewRepository(db)
 
 			// act
-			got, _ := r.Greet() // FIXME: handle error
+			got, err := r.Greet() // FIXME: handle error
 
 			// assert
 			if got != tt.want {
 				t.Errorf("got %s: want %s", got, tt.want)
+			}
+			if tt.err != "" {
+				if err == nil {
+					t.Errorf("got %+v: want %+v", err, tt.err)
+				}
+				if err.Error() != tt.err {
+					t.Errorf("got %s: want %s", err, tt.err)
+				}
 			}
 		})
 	}
