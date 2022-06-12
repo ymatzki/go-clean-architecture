@@ -46,7 +46,7 @@ func TestGreet(t *testing.T) {
 			r := NewRepository(db)
 
 			// act
-			got, err := r.Greet() // FIXME: handle error
+			got, err := r.Greet()
 
 			// assert
 			if got != tt.want {
